@@ -1,11 +1,17 @@
 import infoOrders
+from datetime import datetime, timedelta
 
 # 2. проверяем, что время выполнение первого и второго заказов не превышает 6 часов
 
-assert infoOrders.info_orders ["data"][0]["delay"] <= 6
-assert infoOrders.info_orders ["data"][1]["delay"] <= 6
+for order in infoOrders.info_orders["data"][:2]:
+    started_at_dt = datetime.strptime(order["startedAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
+    completed_at_dt = datetime.strptime(order["completedAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
+    time_difference = completed_at_dt - started_at_dt
 
-# проверить, это через цикл
+    assert time_difference <= timedelta(hours=6)
 
-for i in infoOrders.info_orders ["data"][:2]:
-    assert i["delay"] <= 6
+
+
+
+
+
