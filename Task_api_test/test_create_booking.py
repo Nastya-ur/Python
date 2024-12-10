@@ -21,15 +21,3 @@ class TestBooking:
 
         get_booking = auth_session.get(f"{base_url}/booking/{booking_id}")
         assert get_booking.status_code == 404, "Бронирование не удалилось"
-
-
-
-
-
-
-
-
-
-
-
-
